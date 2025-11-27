@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package bmi;
+
+// ========== Messages ==========
+message UserRequest {
+  string name = 1;
+  double weight = 2;  // kg
+  double height = 3;  // meters
+  int32 age = 4;
+}
+
+message BMIRequest {
+  double weight = 1;
+  double height = 2;
+}
+
+message BMIResponse {
+  double bmi = 1;
+}
+
+message ClassifyRequest {
+  double bmi = 1;
+}
+
+message ClassifyResponse {
+  string category = 1; // "Underweight" | "Normal" | "Overweight" | "Obese"
+}
+
+message RecommendationRequest {
+  string category = 1;
+  int32 age = 2;
+}
+
+message RecommendationResponse {
+  string recommendation = 1;
+}
+
+message FinalResult {
+  string name = 1;
+  double weight = 2;
+  double height = 3;
+  int32 age = 4;
+  double bmi = 5;
+  string category = 6;
+  string recommendation = 7;
+}
+
+// ========== Services ==========
+// Client calls A
+service ServerAService {
+  rpc SubmitUser(UserRequest) returns (FinalResult);
+}
+
+// A -> B
+service BMIService {
+  rpc CalculateBMI(BMIRequest) returns (BMIResponse);
+}
+
+// B -> C
+service CategoryService {
+  rpc ClassifyBMI(ClassifyRequest) returns (ClassifyResponse);
+}
+
+// C -> D (then A stores & returns to client)
+service RecommendationService {
+  rpc GetRecommendation(RecommendationRequest) returns (RecommendationResponse);
+}

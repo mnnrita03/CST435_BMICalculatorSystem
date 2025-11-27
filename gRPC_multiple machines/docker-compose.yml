@@ -1,0 +1,65 @@
+services:
+  server_a:
+    build:
+      context: .
+      dockerfile: server_a/Dockerfile
+    container_name: server_a
+    ports:
+      - "50051:50051"
+    environment:
+      - DB_PATH=/data/bmi.db
+      - B_ADDR=server_b:50052
+      - C_ADDR=server_c:50053
+      - D_ADDR=server_d:50054
+      - PORT=50051
+    volumes:
+      - server_a_data:/data
+    depends_on:
+      - server_b
+      - server_c
+      - server_d
+
+  server_b:
+    build:
+      context: .
+      dockerfile: server_b/Dockerfile
+    container_name: server_b
+    ports:
+      - "50052:50052"
+    environment:
+      - PORT=50052
+
+  server_c:
+    build:
+      context: .
+      dockerfile: server_c/Dockerfile
+    container_name: server_c
+    ports:
+      - "50053:50053"
+    environment:
+      - PORT=50053
+
+  server_d:
+    build:
+      context: .
+      dockerfile: server_d/Dockerfile
+    container_name: server_d
+    ports:
+      - "50054:50054"
+    environment:
+      - PORT=50054
+
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    container_name: bmi_client
+    stdin_open: true   # enable interactive input
+    tty: true
+    environment:
+      - A_ADDR=server_a:50051
+    depends_on:
+      - server_a
+
+volumes:
+  server_a_data:

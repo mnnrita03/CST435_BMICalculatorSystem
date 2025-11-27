@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  server_a:
+    build:
+      context: ./server_a
+    container_name: server_a
+    ports:
+      - "5000:5000"
+    networks:
+      - bmi_net
+
+  server_b:
+    build:
+      context: ./server_b
+    container_name: server_b
+    ports:
+      - "5001:5001"
+    networks:
+      - bmi_net
+
+  server_c:
+    build:
+      context: ./server_c
+    container_name: server_c
+    ports:
+      - "5002:5002"
+    networks:
+      - bmi_net
+
+  server_d:
+    build:
+      context: ./server_d
+    container_name: server_d
+    ports:
+      - "5003:5003"
+    networks:
+      - bmi_net
+
+  client:
+    build:
+      context: ./client
+    container_name: client
+    depends_on:
+      - server_a
+      - server_b
+      - server_c
+      - server_d
+    networks:
+      - bmi_net
+    tty: true      # allows you to interact with input()
+    stdin_open: true
+
+networks:
+  bmi_net:
+    driver: bridge
