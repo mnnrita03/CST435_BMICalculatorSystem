@@ -75,10 +75,7 @@ This requires setting up dependencies manually and running each server in a sepa
 
 ### **5. Key Findings Summary**
 
-| Metric (Multiple Machine) | gRPC | XML-RPC | REST |
-| :--- | :--- | :--- | :--- |
-| **Total Time (s)** | **1.57** | 1.73 | 4.30 |
-| **Throughput (req/s)** | **66.67** | 60.66 | 24.41 |
+<img width="568" height="227" alt="image" src="https://github.com/user-attachments/assets/c7856e2f-bcf9-4f03-b414-8dc593b1a0ef" />
 
 * **Fastest Protocol:** **gRPC** provided the highest throughput due to its binary messaging and HTTP/2 usage.
 * **Best Environment:** The **Docker container** deployment proved nearly **2x faster** than the single-machine local setup, validating the benefits of resource isolation for parallel workloads.
