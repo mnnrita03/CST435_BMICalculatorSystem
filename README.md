@@ -1,5 +1,21 @@
 # CST435_BMICalculatorSystem: Cloud and Parallel Computing Assignment 1
 
+School of Computer Sciences - University Sains Malaysia
+CST435 Cloud and Parallel Computing
+
+Lecturer: Associate Professor Dr. Chan Huah Yong
+
+Prepared by:
+| NAME                                | MATRIC NUMBER |
+|-------------------------------------|---------------|
+| Asilah Zarifah Binti Rosli          | 160458        |
+| Norita Binti Muin                   | 160453        |
+| Nurul Afiqah Binti Azhar            | 160335        |
+| Siti Nawwarah Binti Mohd Abd Hadi   | 160304        |
+| Siti Nur Izzah Binti Abdul Rahman   | 160302        |
+
+---
+
 ### **1. Introduction**
 
 This repository contains the source code and configuration files for a multi-server **Body Mass Index (BMI) processing system** developed for the Cloud and Parallel Computing (CST435) course.
