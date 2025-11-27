@@ -1,0 +1,52 @@
+# version: "3.9"
+
+services:
+  server_a:
+    build: ./server_a
+    container_name: server_a
+    ports:
+      - "8000:8000"
+    depends_on:
+      - server_b
+      - server_c
+      - server_d
+    networks:
+      - bmi_network
+
+  server_b:
+    build: ./server_b
+    container_name: server_b
+    ports:
+      - "8001:8001"
+    networks:
+      - bmi_network
+
+  server_c:
+    build: ./server_c
+    container_name: server_c
+    ports:
+      - "8002:8002"
+    networks:
+      - bmi_network
+
+  server_d:
+    build: ./server_d
+    container_name: server_d
+    ports:
+      - "8003:8003"
+    networks:
+      - bmi_network
+
+  client:
+    build: ./client
+    container_name: client
+    depends_on:
+      - server_a
+    networks:
+      - bmi_network
+    stdin_open: true
+    tty: true
+
+networks:
+  bmi_network:
+    driver: bridge
